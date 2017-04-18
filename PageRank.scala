@@ -2,7 +2,7 @@ import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
-// Do NOT use different Spark libraries.
+
 
 object PageRank {
     def main(args: Array[String]) {
@@ -26,12 +26,6 @@ object PageRank {
         val links = sc
             .textFile(links_file, num_partitions)
 
-        //links.collect().foreach(println)
-        /* Number of outlinks for each node */
-
-        //val frompage = links.map{line =>
-        //                line.replaceAll(" ","")}
-        //                .map(line => (line.split(":")(0),line.split(":")(1)))
 
         val frompage = links.map(line => (line.split(":")(0),line.split(":")(1)))
 
@@ -61,7 +55,6 @@ object PageRank {
         var rank = frompage
                     .mapValues(r => 100/N.toDouble)
 
-        //rank.collect().foreach(println)
 
 
 
